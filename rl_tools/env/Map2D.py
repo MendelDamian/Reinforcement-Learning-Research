@@ -74,9 +74,7 @@ class Map2D(Environment):
                     color = (0, 255, 0)
                 elif (x, y) == self._goal:
                     color = (0, 0, 255)
-                elif self._rewards[x, y] == -1:
-                    color = (0, 0, 0)
-                elif self._rewards[x, y] == 1:
+                elif (x, y) == self._state:
                     color = (255, 0, 0)
 
                 pygame.draw.rect(self._pygame["screen"], color, (x * 50, y * 50, 50, 50))
