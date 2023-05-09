@@ -2,7 +2,7 @@ from typing import Dict
 import random
 
 from .agent import Agent
-from ..types import State, Action, Reward, Done
+from rl_tools.types import State, Action, Reward, Done
 
 
 class QAgent(Agent):
