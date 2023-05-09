@@ -1,7 +1,7 @@
 from typing import Dict
 import random
 
-from .agent import Agent
+from rl_tools.agent import Agent
 from rl_tools.types import State, Action, Reward, Done
 
 
@@ -26,6 +26,16 @@ class QAgent(Agent):
         gamma is the discount factor,
         max(Q(s',a')) is the maximum Q-value for the next state s' and all possible actions a',
         Q(s',a') is the Q-value for the next state s' and action a'
+
+    The algorithm for selecting actions is as follows:
+
+        a <- argmax(Q(s,a)) with probability (1 - epsilon)
+        a <- random(a) with probability (epsilon)
+
+    where:
+        a is the action to take,
+        Q(s,a) is the current Q-value for state s and action a,
+        epsilon is the exploration rate
     """
 
     def __init__(self, alpha: float, gamma: float, epsilon: float) -> None:
