@@ -31,8 +31,7 @@ class UCBQAgent(QAgent):
 
     The Agent differs from the QAgent in that it uses the Upper Confidence Bound (UCB) algorithm to select actions:
 
-        a <- argmax(Q(s,a) + c * sqrt(ln(t) / N(s,a))) with probability (1 - epsilon)
-        a <- random(a) with probability (epsilon)
+        a <- argmax(Q(s,a) + c * sqrt(ln(t) / N(s,a)))
 
     where:
         a is the action to take,
