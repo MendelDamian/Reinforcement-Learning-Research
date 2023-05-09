@@ -97,7 +97,9 @@ class QAgent(Agent):
 
         self._populate_q_table(state, actions)
 
-        return max(self._Q[state], key=self._Q[state].get)
+        max_q_value = max(self._Q[state].values())
+        best_actions = [action for action, q_value in self._Q[state].items() if q_value == max_q_value]
+        return random.choice(best_actions)
 
     def _populate_q_table(self, state: State, actions: tuple[Action, ...]) -> None:
         """
