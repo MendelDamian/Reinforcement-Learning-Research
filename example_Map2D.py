@@ -35,7 +35,7 @@ def main():
     env.render()
     done = False
     while not done:
-        action = agent.get_best_action(state, env.get_actions(state))
+        action = agent.get_action(state, env.get_actions(state))
         next_state, reward, done = env.step(action)
         state = next_state
         env.render()

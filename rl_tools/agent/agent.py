@@ -11,7 +11,3 @@ class Agent(ABC):
     @abstractmethod
     def get_action(self, state: State, actions: tuple[Action, ...]) -> Action:
         pass
-
-    @abstractmethod
-    def get_best_action(self, state: State, actions: tuple[Action, ...]) -> Action:
-        pass

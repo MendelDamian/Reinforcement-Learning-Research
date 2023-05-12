@@ -91,9 +91,9 @@ class QAgent(Agent):
             if random.random() < self._epsilon:
                 return random.choice(actions)
 
-        return self.get_best_action(state, actions)
+        return self._get_best_action(state, actions)
 
-    def get_best_action(self, state: State, actions: tuple[Action, ...]) -> Action:
+    def _get_best_action(self, state: State, actions: tuple[Action, ...]) -> Action:
         """
         Gets the best action to take in the given state using greedy policy.
 
