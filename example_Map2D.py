@@ -1,10 +1,10 @@
 from rl_tools.agent import QAgent, UCBQAgent
-from rl_tools.env import Map2D
+from rl_tools.env import Map2DStatic
 
 
 def main():
     # Create environment
-    env = Map2D(
+    env = Map2DStatic(
         shape=(10, 10),
         start=(0, 0),
         goal=(9, 9),

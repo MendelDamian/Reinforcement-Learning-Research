@@ -4,7 +4,7 @@ from rl_tools.env import Environment
 from rl_tools.types import State, Action, Reward, Done
 
 
-class Map2D(Environment):
+class Map2DStatic(Environment):
     # Actions
     UP = 0
     DOWN = 1
