@@ -19,7 +19,7 @@ class Map2DStatic(Environment):
         self._iteration = 0
 
         self._actions = (self.UP, self.DOWN, self.LEFT, self.RIGHT)
-        self._state: tuple[int, int] = self.reset()
+        self._pos = self._start
 
         self._rewards = np.full(shape, -0.1)
         self._rewards[self._goal] = 1
@@ -29,14 +29,14 @@ class Map2DStatic(Environment):
         }
 
     def reset(self) -> tuple[int, int]:
-        self._state = self._start
+        self._pos = self._start
         self._iteration = 0
         return self._start
 
     def step(self, action: Action) -> tuple[State, Reward, Done]:
         assert action in self._actions
 
-        x, y = self._state
+        x, y = self._pos
         if action == self.UP:
             y -= 1
         elif action == self.DOWN:
@@ -47,10 +47,10 @@ class Map2DStatic(Environment):
             x += 1
 
         self._iteration += 1
-        self._state = self._clamp(x, y)
-        done = self._state == self._goal or self._iteration >= self._iterations
+        self._pos = self._clamp(x, y)
+        done = self._pos == self._goal or self._iteration >= self._iterations
 
-        return self._state, self._rewards[self._state], done
+        return self._get_state(), self._rewards[self._pos], done
 
     def get_actions(self, state: State) -> tuple[Action, ...]:
         return self._actions
@@ -74,7 +74,7 @@ class Map2DStatic(Environment):
                     color = (0, 255, 0)
                 elif (x, y) == self._goal:
                     color = (0, 0, 255)
-                elif (x, y) == self._state:
+                elif (x, y) == self._pos:
                     color = (255, 0, 0)
 
                 pygame.draw.rect(self._pygame["screen"], color, (x * 50, y * 50, 50, 50))
@@ -84,3 +84,6 @@ class Map2DStatic(Environment):
 
     def _clamp(self, x: int, y: int) -> tuple[int, int]:
         return max(0, min(x, self._shape[0] - 1)), max(0, min(y, self._shape[1] - 1))
+
+    def _get_state(self) -> State:
+        return self._pos
